@@ -10,7 +10,6 @@ import {
   FlatList,
   TouchableOpacity,
   RefreshControl,
-  SafeAreaView,
 } from "react-native";
 
 export default function CartScreen() {
@@ -47,7 +46,7 @@ export default function CartScreen() {
     setRefreshing(true);
 
     try {
-      const updatedCartData = await fetchUpdatedCartData(); // Replace with your actual data fetching logic
+      const updatedCartData = await fetchUpdatedCartData();
       setCart(updatedCartData);
     } catch (error) {
       console.error("Error refreshing cart:", error);
@@ -61,8 +60,9 @@ export default function CartScreen() {
       <Image source={{ uri: item.image }} style={styles.itemImage} />
       <View>
         <Text style={styles.itemName}>{item.name}</Text>
+
         <Text style={styles.itemQuantity}>Quantity: {item.quantity}</Text>
-        <Text style={styles.itemPrice}>${item.price.toFixed(2)}</Text>
+        <Text style={styles.itemPrice}>Rs.{item.price.toFixed(2)}</Text>
         <View style={styles.quantityButtons}>
           <TouchableOpacity onPress={() => decreaseQuantity(item.id)}>
             <Text style={styles.quantityButton}>-</Text>
@@ -73,6 +73,20 @@ export default function CartScreen() {
           </TouchableOpacity>
         </View>
       </View>
+    </View>
+  );
+
+  const renderFooter = () => (
+    <View style={styles.footer}>
+      <View style={styles.dottedLine} />
+      <View style={styles.totalContainer}>
+        <Text style={styles.totalText}>
+          Grand Total: Rs.{calculateTotal().toFixed(2)}
+        </Text>
+      </View>
+      <TouchableOpacity>
+        <Text style={styles.placeOrder}>Place Order</Text>
+      </TouchableOpacity>
     </View>
   );
 
@@ -89,12 +103,8 @@ export default function CartScreen() {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        ListFooterComponent={renderFooter}
       />
-      <View style={styles.totalContainer}>
-        <Text style={styles.totalText}>
-          Grand Total: ${calculateTotal().toFixed(2)}
-        </Text>
-      </View>
     </View>
   );
 }
@@ -110,19 +120,18 @@ const styles = StyleSheet.create({
   },
   appBar: {
     flexDirection: "row",
-    backgroundColor: "chocolate",
+    backgroundColor: "seagreen",
     height: 80,
     alignItems: "center",
     paddingHorizontal: 10,
     paddingTop: 20,
-    // marginBottom: 15,
   },
   cartItem: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 10,
-    borderBottomWidth: 1,
+    borderTopWidth: 1,
     borderColor: "#ccc",
     paddingBottom: 5,
     paddingHorizontal: 20,
@@ -160,8 +169,6 @@ const styles = StyleSheet.create({
   },
   totalContainer: {
     paddingHorizontal: 20,
-    // marginTop: 20,
-    // borderTopWidth: 1,
     borderColor: "#ccc",
     paddingTop: 10,
     alignItems: "flex-end",
@@ -169,5 +176,27 @@ const styles = StyleSheet.create({
   totalText: {
     fontSize: 18,
     fontWeight: "bold",
+  },
+  placeOrder: {
+    backgroundColor: "seagreen",
+    textAlign: "center",
+    borderRadius: 15,
+    marginVertical: 20,
+    padding: 10,
+    marginHorizontal: 80,
+    fontSize: 20,
+    fontWeight: "500",
+    color: "white",
+  },
+  footer: {
+    // marginTop: 20,
+    alignItems: "end",
+  },
+  dottedLine: {
+    width: "100%",
+    height: 1,
+    backgroundColor: "transparent",
+    borderTopWidth: 1,
+    borderStyle: "dashed",
   },
 });

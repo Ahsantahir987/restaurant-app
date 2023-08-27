@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   appBar: {
     flexDirection: "row",
-    backgroundColor: "chocolate",
+    backgroundColor: "seagreen",
     height: 80,
     alignItems: "center",
     paddingHorizontal: 10,

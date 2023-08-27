@@ -12,7 +12,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -29,7 +29,7 @@ export default function App() {
     <NavigationContainer screenOptions={{ headerShown: false }}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarActiveTintColor: "coral",
+          tabBarActiveTintColor: "seagreen",
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 

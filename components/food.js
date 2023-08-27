@@ -3,7 +3,7 @@ const FoodCardValues = [
     id: "1",
     imageSource:
       "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=815&q=80",
-    title: "Delicious Burger",
+    title: " Burger",
     price: 12.99,
     category: "Burger",
   },
@@ -11,7 +11,7 @@ const FoodCardValues = [
     id: "2",
     imageSource:
       "https://images.unsplash.com/photo-1584178639036-613ba57e5e39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-    title: "Delicious Burger",
+    title: " Burger",
     price: 9.99,
     category: "Burger",
   },
@@ -27,7 +27,7 @@ const FoodCardValues = [
     id: "4",
     imageSource:
       "https://images.unsplash.com/photo-1625683257212-116d74981941?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-    title: "Delicious Burger",
+    title: "Burger",
     price: 12.99,
     category: "Burger",
   },
@@ -35,7 +35,7 @@ const FoodCardValues = [
     id: "5",
     imageSource:
       "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1398&q=80",
-    title: "Delicious Burger",
+    title: "Burger",
     price: 12.99,
     category: "Burger",
   },
