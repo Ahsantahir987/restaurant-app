@@ -58,19 +58,22 @@ export default function CartScreen() {
   const renderItem = ({ item }) => (
     <View style={styles.cartItem}>
       <Image source={{ uri: item.image }} style={styles.itemImage} />
-      <View>
-        <Text style={styles.itemName}>{item.name}</Text>
-
-        <Text style={styles.itemQuantity}>Quantity: {item.quantity}</Text>
-        <Text style={styles.itemPrice}>Rs.{item.price.toFixed(2)}</Text>
-        <View style={styles.quantityButtons}>
-          <TouchableOpacity onPress={() => decreaseQuantity(item.id)}>
-            <Text style={styles.quantityButton}>-</Text>
-          </TouchableOpacity>
-          <Text style={styles.quantity}>{item.quantity}</Text>
-          <TouchableOpacity onPress={() => increaseQuantity(item.id)}>
-            <Text style={styles.quantityButton}>+</Text>
-          </TouchableOpacity>
+      <View style={styles.itemDetailsContainer}>
+        <View style={styles.leftColumn}>
+          <Text style={styles.itemName}>{item.name}</Text>
+          <Text style={styles.itemPrice}>Rs.{item.price.toFixed(2)}</Text>
+        </View>
+        <View style={styles.rightColumn}>
+          <Text style={styles.itemQuantity}>Quantity: {item.quantity}</Text>
+          <View style={styles.quantityButtons}>
+            <TouchableOpacity onPress={() => decreaseQuantity(item.id)}>
+              <Text style={styles.quantityButton}>-</Text>
+            </TouchableOpacity>
+            <Text style={styles.quantity}>{item.quantity}</Text>
+            <TouchableOpacity onPress={() => increaseQuantity(item.id)}>
+              <Text style={styles.quantityButton}>+</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -78,7 +81,7 @@ export default function CartScreen() {
 
   const renderFooter = () => (
     <View style={styles.footer}>
-      <View style={styles.dottedLine} />
+      {/* <View style={styles.dottedLine} /> */}
       <View style={styles.totalContainer}>
         <Text style={styles.totalText}>
           Grand Total: Rs.{calculateTotal().toFixed(2)}
@@ -128,13 +131,25 @@ const styles = StyleSheet.create({
   },
   cartItem: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 10,
     borderTopWidth: 1,
     borderColor: "#ccc",
     paddingBottom: 5,
     paddingHorizontal: 20,
+    paddingVertical: 15,
+  },
+  itemDetailsContainer: {
+    flexDirection: "row",
+    flex: 1,
+    alignItems: "center",
+  },
+  leftColumn: {
+    flex: 1,
+  },
+  rightColumn: {
+    flexDirection: "column",
+    alignItems: "flex-start",
   },
   itemImage: {
     width: 80,
@@ -144,6 +159,7 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 18,
+    fontWeight: "500",
   },
   itemQuantity: {
     fontSize: 16,
@@ -151,25 +167,25 @@ const styles = StyleSheet.create({
   },
   itemPrice: {
     fontSize: 16,
-    fontWeight: "bold",
+    // marginTop: 5,
+    color: "green",
   },
   quantityButtons: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 5,
+    marginTop: 3,
   },
   quantityButton: {
     fontSize: 20,
     fontWeight: "bold",
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
   },
   quantity: {
     fontSize: 18,
     paddingHorizontal: 15,
   },
   totalContainer: {
-    paddingHorizontal: 20,
-    borderColor: "#ccc",
+    paddingHorizontal: 10,
     paddingTop: 10,
     alignItems: "flex-end",
   },
@@ -180,7 +196,7 @@ const styles = StyleSheet.create({
   placeOrder: {
     backgroundColor: "seagreen",
     textAlign: "center",
-    borderRadius: 15,
+    borderRadius: 10,
     marginVertical: 20,
     padding: 10,
     marginHorizontal: 80,
@@ -189,7 +205,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   footer: {
-    // marginTop: 20,
+    marginTop: 20,
     alignItems: "end",
   },
   dottedLine: {

@@ -15,9 +15,9 @@ function Slider({ navigation }) {
   const scrollViewRef = useRef(null);
 
   const images = [
+    "https://www.mrcod.pk/wp-content/uploads/2023/07/bouncer-deal-banner-1.webp",
     "https://i0.wp.com/www.restaurantmenu.pk/wp-content/uploads/2022/07/burger-o-clock-1.jpg?resize=800%2C330&ssl=1",
-    "https://via.placeholder.com/400x200.png",
-    "https://via.placeholder.com/400x200.png",
+    "https://images.deliveryhero.io/image/fd-pk/LH/omvy-hero.jpg",
     // Add as many images as you'd like
   ];
 

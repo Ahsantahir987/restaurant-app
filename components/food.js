@@ -4,7 +4,7 @@ const FoodCardValues = [
     imageSource:
       "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=815&q=80",
     title: " Burger",
-    price: 12.99,
+    price: 800.0,
     category: "Burger",
   },
   {
@@ -12,7 +12,7 @@ const FoodCardValues = [
     imageSource:
       "https://images.unsplash.com/photo-1584178639036-613ba57e5e39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     title: " Burger",
-    price: 9.99,
+    price: 750.0,
     category: "Burger",
   },
   {
@@ -20,7 +20,7 @@ const FoodCardValues = [
     imageSource:
       "https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80",
     title: "Zinger Burger with Fries",
-    price: 599,
+    price: 599.0,
     category: "Burger",
   },
   {
@@ -28,7 +28,7 @@ const FoodCardValues = [
     imageSource:
       "https://images.unsplash.com/photo-1625683257212-116d74981941?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     title: "Burger",
-    price: 12.99,
+    price: 550.0,
     category: "Burger",
   },
   {
@@ -36,8 +36,40 @@ const FoodCardValues = [
     imageSource:
       "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1398&q=80",
     title: "Burger",
-    price: 12.99,
+    price: 400.0,
     category: "Burger",
+  },
+  {
+    id: "16",
+    imageSource:
+      "https://images.unsplash.com/photo-1604382353954-7d61d1db1f9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
+    title: "Chicken Tikka",
+    price: 1500,
+    category: "Pizza",
+  },
+  {
+    id: "17",
+    imageSource:
+      "https://images.unsplash.com/photo-1609159085964-e47ec0804449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    title: "Chicken Tikka",
+    price: 1500,
+    category: "Pizza",
+  },
+  {
+    id: "18",
+    imageSource:
+      "https://images.unsplash.com/photo-1609159086308-e8de8a538e28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=886&q=80",
+    title: "Chicken Tikka",
+    price: 1500,
+    category: "Pizza",
+  },
+  {
+    id: "19",
+    imageSource:
+      "https://images.unsplash.com/photo-1605478371310-a9f1e96b4ff4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    title: "Chicken Tikka",
+    price: 1500,
+    category: "Pizza",
   },
   {
     id: "6",
@@ -118,38 +150,6 @@ const FoodCardValues = [
     title: "Pasta",
     price: 400,
     category: "Pasta",
-  },
-  {
-    id: "16",
-    imageSource:
-      "https://images.unsplash.com/photo-1604382353954-7d61d1db1f9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
-    title: "Chicken Tikka",
-    price: 1500,
-    category: "Pizza",
-  },
-  {
-    id: "17",
-    imageSource:
-      "https://images.unsplash.com/photo-1609159085964-e47ec0804449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-    title: "Chicken Tikka",
-    price: 1500,
-    category: "Pizza",
-  },
-  {
-    id: "18",
-    imageSource:
-      "https://images.unsplash.com/photo-1609159086308-e8de8a538e28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=886&q=80",
-    title: "Chicken Tikka",
-    price: 1500,
-    category: "Pizza",
-  },
-  {
-    id: "19",
-    imageSource:
-      "https://images.unsplash.com/photo-1605478371310-a9f1e96b4ff4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-    title: "Chicken Tikka",
-    price: 1500,
-    category: "Pizza",
   },
   {
     id: "20",

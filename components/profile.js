@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "seagreen",
     marginTop: 40,
-    borderRadius: 15,
+    borderRadius: 10,
     justifyContent: "center",
     padding: 7,
     marginHorizontal: 100,

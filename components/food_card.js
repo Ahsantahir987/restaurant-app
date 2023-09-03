@@ -38,7 +38,7 @@ const FoodCard = ({ id, imageSource, title, price }) => {
           ))}
         </View>
       </View>
-      <Text style={styles.price}>Price: Rs{price}</Text>
+      <Text style={styles.price}>Rs.{price.toFixed(2)}</Text>
     </View>
   );
 };
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    margin: 5,
+    marginVertical: 5,
   },
   price: {
     fontSize: 16,

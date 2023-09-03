@@ -1,31 +1,33 @@
 import React from "react";
-
+import FoodCard from "./food_card";
+import FoodCardValues from "./food";
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   TouchableOpacity,
-  Dimensions,
+  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icons from "react-native-vector-icons/Fontisto";
 import Slider from "./slider";
-
-function renderCategory({ iconName, text, navigation }) {
-  const handleCategoryPress = () => {
-    navigation.push("FoodItem", { text });
-  };
-
-  return (
-    <TouchableOpacity style={styles.category} onPress={handleCategoryPress}>
-      <Icon name={iconName} size={35} color="darkolivegreen" />
-      <Text>{text}</Text>
-    </TouchableOpacity>
-  );
-}
+import Category from "./category";
 
 function HomeScreen({ navigation }) {
+  const groupedFoodItems = {};
+  FoodCardValues.forEach((foodItem) => {
+    if (!groupedFoodItems[foodItem.category]) {
+      groupedFoodItems[foodItem.category] = [];
+    }
+    groupedFoodItems[foodItem.category].push(foodItem);
+  });
+
+  const selectedFoodCards = [];
+  Object.keys(groupedFoodItems).forEach((category) => {
+    const categoryItems = groupedFoodItems[category].slice(0, 2);
+    selectedFoodCards.push(...categoryItems);
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.appBar}>
@@ -33,54 +35,37 @@ function HomeScreen({ navigation }) {
         <Text style={styles.appBarTitle}>Restaurant App</Text>
         <Icons name="search" size={25} color="black" />
       </View>
-      <Text style={styles.title}>Deals</Text>
-      <Slider></Slider>
-      <Text style={styles.title2}>Category</Text>
-      <View style={styles.row}>
-        {renderCategory({
-          iconName: "pizza",
-          text: "Pizza",
-          navigation: navigation,
-        })}
-        {renderCategory({
-          iconName: "hamburger",
-          text: "Burger",
-          navigation: navigation,
-        })}
-        {renderCategory({
-          iconName: "food-variant",
-          text: "Desi",
-          navigation: navigation,
-        })}
-        {renderCategory({
-          iconName: "noodles",
-          text: "Chinese",
-          navigation: navigation,
-        })}
-      </View>
-      <View style={styles.row}>
-        {renderCategory({
-          iconName: "pasta",
-          text: "Pasta",
-          navigation: navigation,
-        })}
-        {renderCategory({
-          iconName: "ice-cream",
-          text: "Dessert",
-          navigation: navigation,
-        })}
-        {renderCategory({
-          iconName: "french-fries",
-          text: "Fries",
-          navigation: navigation,
-        })}
-        {renderCategory({
-          iconName: "food-fork-drink",
-          text: "Drinks",
-          navigation: navigation,
-        })}
-      </View>
-      <Text style={styles.title}>Popular Item</Text>
+      <ScrollView>
+        <Text style={styles.title}>Deals</Text>
+        <Slider></Slider>
+        <Category navigation={navigation} />
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={styles.title}>Popular Item</Text>
+          <TouchableOpacity>
+            <Text
+              style={{
+                color: "green",
+                marginRight: 20,
+                marginTop: 13,
+                fontSize: 15,
+                fontWeight: "500",
+              }}
+            >
+              View All
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {selectedFoodCards.map((foodCard, index) => (
+          <FoodCard
+            key={index}
+            id={foodCard.id}
+            imageSource={foodCard.imageSource}
+            title={foodCard.title}
+            price={foodCard.price}
+          />
+        ))}
+        <View style={{ margin: 40 }}></View>
+      </ScrollView>
     </View>
   );
 }
@@ -105,25 +90,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginVertical: 8,
     marginHorizontal: 20,
-  },
-  title2: {
-    fontSize: 20,
-    fontWeight: "500",
-    marginHorizontal: 20,
-  },
-  category: {
-    backgroundColor: "gainsboro",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    height: 80,
-    width: "22%",
-  },
-  row: {
-    marginHorizontal: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 15,
   },
 });
 
