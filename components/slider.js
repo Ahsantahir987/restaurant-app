@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { View, Image, StyleSheet, ScrollView } from "react-native";
 import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Dimensions,
-  ScrollView,
-} from "react-native";
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
-const windowWidth = Dimensions.get("window").width;
-
-function Slider({ navigation }) {
+function Slider() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const scrollViewRef = useRef(null);
 
@@ -18,7 +13,6 @@ function Slider({ navigation }) {
     "https://www.mrcod.pk/wp-content/uploads/2023/07/bouncer-deal-banner-1.webp",
     "https://i0.wp.com/www.restaurantmenu.pk/wp-content/uploads/2022/07/burger-o-clock-1.jpg?resize=800%2C330&ssl=1",
     "https://images.deliveryhero.io/image/fd-pk/LH/omvy-hero.jpg",
-    // Add as many images as you'd like
   ];
 
   useEffect(() => {
@@ -35,7 +29,7 @@ function Slider({ navigation }) {
   useEffect(() => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({
-        x: currentImageIndex * windowWidth,
+        x: currentImageIndex * wp("100%"),
         animated: true,
       });
     }
@@ -58,8 +52,8 @@ function Slider({ navigation }) {
 
 const styles = StyleSheet.create({
   image: {
-    width: windowWidth - 30,
-    height: 200,
+    width: wp("100%") - 30,
+    height: wp("50%"),
     resizeMode: "contain",
     borderRadius: 20,
   },

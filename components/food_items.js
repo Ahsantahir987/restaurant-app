@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import FoodCard from "./food_card";
-import FoodCardValues from "./food";
+import FoodCardValues from "../provider/food";
 import Icon from "react-native-vector-icons/AntDesign";
 
 const FoodItem = ({ route, navigation }) => {

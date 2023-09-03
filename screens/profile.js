@@ -92,9 +92,6 @@ export default function Profile() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-  },
   title: {
     color: "white",
     fontSize: 20,

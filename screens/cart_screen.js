@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
-import cartItems from "./cart";
-import { fetchUpdatedCartData } from "./cart";
+import cartItems from "../provider/cart";
+import { fetchUpdatedCartData } from "../provider/cart";
 
 import {
   View,
@@ -13,6 +13,7 @@ import {
 } from "react-native";
 
 export default function CartScreen() {
+  console.log(cartItems.length);
   const [cart, setCart] = useState(cartItems);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -81,7 +82,6 @@ export default function CartScreen() {
 
   const renderFooter = () => (
     <View style={styles.footer}>
-      {/* <View style={styles.dottedLine} /> */}
       <View style={styles.totalContainer}>
         <Text style={styles.totalText}>
           Grand Total: Rs.{calculateTotal().toFixed(2)}
@@ -167,7 +167,6 @@ const styles = StyleSheet.create({
   },
   itemPrice: {
     fontSize: 16,
-    // marginTop: 5,
     color: "green",
   },
   quantityButtons: {
@@ -203,16 +202,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "500",
     color: "white",
-  },
-  footer: {
-    marginTop: 20,
-    alignItems: "end",
-  },
-  dottedLine: {
-    width: "100%",
-    height: 1,
-    backgroundColor: "transparent",
-    borderTopWidth: 1,
-    borderStyle: "dashed",
   },
 });

@@ -1,6 +1,6 @@
 import React from "react";
-import FoodCard from "./food_card";
-import FoodCardValues from "./food";
+import FoodCard from "../components/food_card";
+import FoodCardValues from "../provider/food";
 import {
   View,
   Text,
@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icons from "react-native-vector-icons/Fontisto";
-import Slider from "./slider";
-import Category from "./category";
+import Slider from "../components/slider";
+import Category from "../components/category";
 
 function HomeScreen({ navigation }) {
   const groupedFoodItems = {};

@@ -1,7 +1,11 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { addToCart } from "./cart";
+import { addToCart } from "../provider/cart";
 import Icon from "react-native-vector-icons/Ionicons";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const FoodCard = ({ id, imageSource, title, price }) => {
   const addToCartHandler = () => {
@@ -59,8 +63,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   image: {
-    width: "100%",
-    height: 200,
+    height: hp("23%"),
     borderRadius: 10,
     resizeMode: "contain",
   },
@@ -73,12 +76,12 @@ const styles = StyleSheet.create({
     backgroundColor: "grey",
   },
   title: {
-    fontSize: 18,
+    fontSize: hp("2.5%"),
     fontWeight: "bold",
     marginVertical: 5,
   },
   price: {
-    fontSize: 16,
+    fontSize: hp("2%"),
     color: "green",
     marginLeft: 15,
     marginBottom: 10,
