@@ -2,6 +2,7 @@ import HomeScreen from "../screens/home";
 import FoodItem from "../components/food_items";
 import CartScreen from "../screens/cart_screen";
 import Profile from "../screens/profile";
+import FoodInputScreen from "../screens/food_input_screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -44,6 +45,11 @@ function BottomTab() {
         name="Profile"
         options={{ headerShown: false }}
         component={Profile}
+      />
+      <Tab.Screen
+        name="Add Product"
+        options={{ headerShown: false }}
+        component={FoodInputScreen}
       />
     </Tab.Navigator>
   );

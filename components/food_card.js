@@ -42,7 +42,7 @@ const FoodCard = ({ id, imageSource, title, price }) => {
           ))}
         </View>
       </View>
-      <Text style={styles.price}>Rs.{price.toFixed(2)}</Text>
+      <Text style={styles.price}>Rs.{price}</Text>
     </View>
   );
 };

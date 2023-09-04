@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FoodCard from "../components/food_card";
-import FoodCardValues from "../provider/food";
+import axios from "axios";
+// import FoodCardValues from "../provider/food";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icons from "react-native-vector-icons/Fontisto";
@@ -14,8 +16,31 @@ import Slider from "../components/slider";
 import Category from "../components/category";
 
 function HomeScreen({ navigation }) {
+  const [foodData, setFoodData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Function to fetch data
+    const fetchFoodData = async () => {
+      try {
+        const response = await axios.get(
+          "https://restaurant-2c77a-default-rtdb.firebaseio.com/food.json"
+        );
+        const fetchedData = response.data;
+        console.log(Object.values(fetchedData));
+        // Update the state variable with the fetched data
+        setFoodData(Object.values(fetchedData));
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchFoodData();
+  }, []);
+
   const groupedFoodItems = {};
-  FoodCardValues.forEach((foodItem) => {
+  foodData.forEach((foodItem) => {
     if (!groupedFoodItems[foodItem.category]) {
       groupedFoodItems[foodItem.category] = [];
     }
@@ -35,37 +60,47 @@ function HomeScreen({ navigation }) {
         <Text style={styles.appBarTitle}>Restaurant App</Text>
         <Icons name="search" size={25} color="black" />
       </View>
-      <ScrollView>
-        <Text style={styles.title}>Deals</Text>
-        <Slider></Slider>
-        <Category navigation={navigation} />
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={styles.title}>Popular Item</Text>
-          <TouchableOpacity>
-            <Text
-              style={{
-                color: "green",
-                marginRight: 20,
-                marginTop: 13,
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              View All
-            </Text>
-          </TouchableOpacity>
-        </View>
-        {selectedFoodCards.map((foodCard, index) => (
-          <FoodCard
-            key={index}
-            id={foodCard.id}
-            imageSource={foodCard.imageSource}
-            title={foodCard.title}
-            price={foodCard.price}
-          />
-        ))}
-        <View style={{ margin: 40 }}></View>
-      </ScrollView>
+      {isLoading ? ( // Conditionally render loading indicator
+        <ActivityIndicator
+          size="large"
+          color="seagreen"
+          style={styles.loadingIndicator}
+        />
+      ) : (
+        <ScrollView>
+          <Text style={styles.title}>Deals</Text>
+          <Slider></Slider>
+          <Category navigation={navigation} />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <Text style={styles.title}>Popular Item</Text>
+            <TouchableOpacity>
+              <Text
+                style={{
+                  color: "green",
+                  marginRight: 20,
+                  marginTop: 13,
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                View All
+              </Text>
+            </TouchableOpacity>
+          </View>
+          {selectedFoodCards.map((foodCard, index) => (
+            <FoodCard
+              key={index}
+              id={foodCard.id}
+              imageSource={foodCard.imageSource}
+              title={foodCard.title}
+              price={foodCard.price}
+            />
+          ))}
+          <View style={{ margin: 40 }}></View>
+        </ScrollView>
+      )}
     </View>
   );
 }
