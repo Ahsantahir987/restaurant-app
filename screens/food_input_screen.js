@@ -9,8 +9,7 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-// import { saveFoodToFirebase } from "../provider/food";
-import addFood from "../provider/food";
+import addFood from "../provider/add_food";
 
 function FoodInputScreen() {
   const [title, setTitle] = useState("");
@@ -20,14 +19,14 @@ function FoodInputScreen() {
   const [isVisible, setIsVisible] = useState(false);
 
   const options = [
-    { label: "Pizza", value: "pizza" },
-    { label: "Burger", value: "burger" },
-    { label: "Desi", value: "desi" },
-    { label: "Chinese", value: "chinese" },
-    { label: "Pasta", value: "pasta" },
-    { label: "Dessert", value: "dessert" },
-    { label: "Fries", value: "fries" },
-    { label: "Drinks", value: "drinks" },
+    { label: "Pizza", value: "Pizza" },
+    { label: "Burger", value: "Burger" },
+    { label: "Desi", value: "Desi" },
+    { label: "Chinese", value: "Chinese" },
+    { label: "Pasta", value: "Pasta" },
+    { label: "Dessert", value: "Dessert" },
+    { label: "Fries", value: "Fries" },
+    { label: "Drinks", value: "Drinks" },
   ];
 
   const toggleDropdown = () => {
@@ -41,13 +40,13 @@ function FoodInputScreen() {
 
   const handleSave = () => {
     const foodData = {
+      id: new Date().getTime().toString(),
       title,
       price,
       imageUrl,
       category: selectedOption?.value,
     };
     console.log(foodData);
-    // saveFoodToFirebase(foodData);
     addFood(foodData);
   };
 

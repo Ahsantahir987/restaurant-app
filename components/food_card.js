@@ -1,21 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { addToCart } from "../provider/cart";
 import Icon from "react-native-vector-icons/Ionicons";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import addCart from "../provider/add_cart";
+import { fetchCartData } from "../provider/fetch_cart";
 
 const FoodCard = ({ id, imageSource, title, price }) => {
-  const addToCartHandler = () => {
-    addToCart({
-      id: id,
-      name: title,
-      price: price,
-      image: imageSource,
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    fetchCartData().then((data) => {
+      setCart(data);
     });
+  }, []);
+
+  const addToCartHandler = () => {
+    const existingItem = cart.find((item) => item.id === id);
+    console.log(cart);
+    console.log(id);
+    console.log(existingItem);
+
+    if (existingItem) {
+      const updatedCart = cart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      setCart(updatedCart);
+      console.log(updatedCart);
+    } else {
+      const foodData = {
+        id: id,
+        title,
+        price,
+        imageSource,
+        quantity: 1,
+      };
+      addCart(foodData);
+    }
   };
+
   const star = 4;
   return (
     <View style={styles.card}>

@@ -1,8 +1,6 @@
 import FoodCard from "./food_card";
 import React, { useEffect, useState } from "react";
-
-import axios from "axios";
-// import fetchFoodData from "../provider/food";
+import { fetchFoodData } from "../provider/fetch_food";
 import Icon from "react-native-vector-icons/AntDesign";
 import {
   View,
@@ -12,30 +10,20 @@ import {
   Pressable,
   ActivityIndicator,
 } from "react-native";
-// ... other imports ...
 
 const FoodItem = ({ route, navigation }) => {
   const foods = route.params;
   const [foodData, setFoodData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const fetchFoodData = async () => {
-      try {
-        const response = await axios.get(
-          "https://restaurant-2c77a-default-rtdb.firebaseio.com/food.json"
-        );
-        const fetchedData = response.data;
-        console.log(Object.values(fetchedData));
-        setFoodData(Object.values(fetchedData));
-        setIsLoading(false); // Data fetching is complete
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setIsLoading(false); // Data fetching failed
-      }
-    };
-
-    fetchFoodData();
+    fetchFoodData()
+      .then((data) => {
+        setFoodData(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -54,12 +42,10 @@ const FoodItem = ({ route, navigation }) => {
         />
       ) : (
         <ScrollView>
-          {foodData.some(
-            (foodCard) => foodCard.category === foods["text"].toLowerCase()
-          ) ? (
+          {foodData.some((foodCard) => foodCard.category === foods["text"]) ? (
             foodData.map(
               (foodCard, index) =>
-                foodCard.category === foods["text"].toLowerCase() && (
+                foodCard.category === foods["text"] && (
                   <FoodCard
                     key={index}
                     id={foodCard.id}

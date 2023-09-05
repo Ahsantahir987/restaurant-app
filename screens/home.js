@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FoodCard from "../components/food_card";
 import axios from "axios";
-// import FoodCardValues from "../provider/food";
 import {
   View,
   Text,
@@ -14,29 +13,21 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icons from "react-native-vector-icons/Fontisto";
 import Slider from "../components/slider";
 import Category from "../components/category";
+import { fetchFoodData } from "../provider/fetch_food";
 
 function HomeScreen({ navigation }) {
   const [foodData, setFoodData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Function to fetch data
-    const fetchFoodData = async () => {
-      try {
-        const response = await axios.get(
-          "https://restaurant-2c77a-default-rtdb.firebaseio.com/food.json"
-        );
-        const fetchedData = response.data;
-        console.log(Object.values(fetchedData));
-        // Update the state variable with the fetched data
-        setFoodData(Object.values(fetchedData));
+    fetchFoodData()
+      .then((data) => {
+        setFoodData(data);
         setIsLoading(false);
-      } catch (error) {
+      })
+      .catch((error) => {
         setIsLoading(false);
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchFoodData();
+      });
   }, []);
 
   const groupedFoodItems = {};
@@ -52,7 +43,6 @@ function HomeScreen({ navigation }) {
     const categoryItems = groupedFoodItems[category].slice(0, 2);
     selectedFoodCards.push(...categoryItems);
   });
-
   return (
     <View style={styles.container}>
       <View style={styles.appBar}>
@@ -60,12 +50,8 @@ function HomeScreen({ navigation }) {
         <Text style={styles.appBarTitle}>Restaurant App</Text>
         <Icons name="search" size={25} color="black" />
       </View>
-      {isLoading ? ( // Conditionally render loading indicator
-        <ActivityIndicator
-          size="large"
-          color="seagreen"
-          style={styles.loadingIndicator}
-        />
+      {isLoading ? (
+        <ActivityIndicator size="large" color="seagreen" />
       ) : (
         <ScrollView>
           <Text style={styles.title}>Deals</Text>
