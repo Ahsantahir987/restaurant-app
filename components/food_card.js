@@ -19,9 +19,6 @@ const FoodCard = ({ id, imageSource, title, price }) => {
 
   const addToCartHandler = () => {
     const existingItem = cart.find((item) => item.id === id);
-    console.log(cart);
-    console.log(id);
-    console.log(existingItem);
 
     if (existingItem) {
       const updatedCart = cart.map((item) =>

@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import FoodListScreen from "../screens/admin/food_list";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -50,6 +51,11 @@ function BottomTab() {
         name="Add Product"
         options={{ headerShown: false }}
         component={FoodInputScreen}
+      />
+      <Tab.Screen
+        name="Food"
+        options={{ headerShown: false }}
+        component={FoodListScreen}
       />
     </Tab.Navigator>
   );

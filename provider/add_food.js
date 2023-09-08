@@ -2,7 +2,7 @@ import axios from "axios";
 export default function addFood(foodData) {
   console.log(foodData);
   axios
-    .post(
+    .put(
       "https://restaurant-2c77a-default-rtdb.firebaseio.com/food.json",
       foodData
     )

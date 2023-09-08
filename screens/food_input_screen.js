@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 import addFood from "../provider/add_food";
+import AppBar from "../components/app_bar";
 
 function FoodInputScreen() {
   const [title, setTitle] = useState("");
@@ -51,10 +52,8 @@ function FoodInputScreen() {
   };
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      keyboardShouldPersistTaps="handled"
-    >
+    <View style={styles.container}>
+      <AppBar title="Add Food" />
       <Text style={styles.label}>Title:</Text>
       <TextInput
         style={styles.input}
@@ -99,20 +98,23 @@ function FoodInputScreen() {
         </View>
       </Modal>
 
-      <Button title="Save" onPress={handleSave} style={styles.saveButton} />
-    </ScrollView>
+      <TouchableOpacity onPress={handleSave}>
+        <View style={styles.logout}>
+          <Text style={styles.logtitle}>Save</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    // backgroundColor: "#fff",
   },
   label: {
     fontSize: 16,
-    marginBottom: 8,
+    marginVertical: 8,
+    marginHorizontal: 15,
     color: "#333",
   },
   input: {
@@ -122,8 +124,10 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderRadius: 4,
     marginBottom: 16,
+    marginHorizontal: 15,
   },
   dropdownButton: {
+    marginHorizontal: 15,
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 4,
@@ -151,10 +155,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#fff",
   },
-  saveButton: {
-    backgroundColor: "#007AFF",
-    color: "#fff",
-    fontSize: 16,
+  logout: {
+    alignItems: "center",
+    backgroundColor: "seagreen",
+    marginTop: 20,
+    borderRadius: 10,
+    justifyContent: "center",
+    padding: 7,
+    marginHorizontal: 100,
+  },
+  logtitle: {
+    fontSize: 20,
+    fontWeight: "500",
+    marginRight: 10,
+    color: "white",
   },
 });
 
