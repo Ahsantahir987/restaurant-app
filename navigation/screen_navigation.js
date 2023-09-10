@@ -2,7 +2,7 @@ import HomeScreen from "../screens/home";
 import FoodItem from "../components/food_items";
 import CartScreen from "../screens/cart_screen";
 import Profile from "../screens/profile";
-import FoodInputScreen from "../screens/food_input_screen";
+import FoodInputScreen from "../screens/admin/food_input_screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -26,6 +26,8 @@ function BottomTab() {
             iconName = "shopping-cart";
           } else if (route.name === "Profile") {
             iconName = "user";
+          } else if (route.name === "Food") {
+            iconName = "list-ul";
           }
 
           return <Icon name={iconName} size={size} color={color} />;
@@ -39,18 +41,23 @@ function BottomTab() {
       />
       <Tab.Screen
         name="Cart"
-        options={{ headerShown: false }}
         component={CartScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: "seagreen",
+          },
+          headerTintColor: "white",
+        }}
       />
       <Tab.Screen
         name="Profile"
-        options={{ headerShown: false }}
         component={Profile}
-      />
-      <Tab.Screen
-        name="Add Product"
-        options={{ headerShown: false }}
-        component={FoodInputScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: "seagreen",
+          },
+          headerTintColor: "white",
+        }}
       />
       <Tab.Screen
         name="Food"
@@ -79,6 +86,16 @@ export default function ScreenNavigation() {
           name="FoodItem"
           component={FoodItem}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AddFood"
+          component={FoodInputScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: "seagreen",
+            },
+            headerTintColor: "white",
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

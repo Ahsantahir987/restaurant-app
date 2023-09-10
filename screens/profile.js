@@ -10,7 +10,6 @@ import {
 import { ThemeProvider } from "react-native-elements";
 import { useColorScheme } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import AppBar from "../components/app_bar";
 const user = {
   id: 1,
   name: "John Doe",
@@ -45,7 +44,6 @@ export default function Profile() {
   return (
     <ThemeProvider useDark={useDarkMode}>
       <View style={styles.container}>
-        <AppBar title="Profile" />
         <View style={styles.card}>
           <Image source={user.profileImage} style={styles.profileImage} />
           <View style={styles.userdata}>

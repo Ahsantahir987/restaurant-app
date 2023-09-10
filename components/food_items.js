@@ -30,7 +30,12 @@ const FoodItem = ({ route, navigation }) => {
     <View style={styles.container}>
       <View style={styles.appBar}>
         <Pressable onPress={() => navigation.goBack()}>
-          <Icon name="arrowleft" size={30} style={{ marginRight: 15 }}></Icon>
+          <Icon
+            name="arrowleft"
+            size={22}
+            color={"white"}
+            style={{ marginRight: 15 }}
+          ></Icon>
         </Pressable>
         <Text style={styles.appBarTitle}>{foods["text"]}</Text>
       </View>

@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { fetchCartData } from "../provider/fetch_cart";
 import { deleteCartItem } from "../provider/delete_cart";
-import AppBar from "../components/app_bar";
 import {
   View,
   Text,
@@ -111,7 +110,6 @@ export default function CartScreen() {
 
   return (
     <View style={styles.container}>
-      <AppBar title="Your Cart" />
       {isLoading ? (
         <ActivityIndicator size="large" color="seagreen" />
       ) : (

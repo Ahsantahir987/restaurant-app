@@ -6,13 +6,17 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { fetchFoodData } from "../../provider/fetch_food";
 import Icon from "react-native-vector-icons/FontAwesome";
-import AppBar from "../../components/app_bar";
+import Icons from "react-native-vector-icons/Ionicons";
+import { deleteFood } from "../../provider/delete_food";
+import { RefreshControl } from "react-native";
 
-const FoodListScreen = () => {
+const FoodListScreen = ({ navigation }) => {
   const [foodData, setFoodData] = useState([]);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     fetchFoodData().then((data) => {
@@ -20,23 +24,59 @@ const FoodListScreen = () => {
     });
   }, []);
 
+  const handleRefresh = () => {
+    setIsRefreshing(true); // Start the refreshing animation
+
+    // Fetch new data here (you can use your fetchFoodData function)
+    fetchFoodData()
+      .then((data) => {
+        setFoodData(data);
+        setIsRefreshing(false); // Stop the refreshing animation
+      })
+      .catch((error) => {
+        console.error("Error refreshing data: ", error);
+        setIsRefreshing(false); // Stop the refreshing animation on error
+      });
+  };
+
+  const addHandle = () => {
+    navigation.push("AddFood", { item: null });
+  };
+
   const handleEdit = (item) => {
-    // Handle edit action here, e.g., navigate to an edit screen
-    console.log(foodData);
-    console.log(`Editing ${item.title}`);
+    navigation.push("AddFood", { item: item.id });
   };
 
   const handleDelete = (item) => {
-    // Handle delete action here, e.g., show a confirmation dialog
-    console.log(`Deleting ${item.title}`);
+    deleteFood(item.id);
+    Alert.alert("Success", "Food data delete successfully!", [
+      {
+        text: "OK",
+        onPress: () => {
+          handleRefresh();
+        },
+      },
+    ]);
   };
 
   return (
     <View style={styles.container}>
-      <AppBar title="Food List" />
+      <View style={styles.appBar}>
+        <Text style={styles.appBarTitle}>Restaurant App</Text>
+        <TouchableOpacity onPress={addHandle}>
+          <Icons name="add" size={30} color="white" />
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={foodData}
         keyExtractor={(item) => item.id}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={handleRefresh}
+            tintColor="seagreen" // Customize the color of the refresh indicator
+          />
+        }
         renderItem={({ item }) => {
           return (
             <View style={styles.foodTile}>
@@ -72,6 +112,21 @@ const FoodListScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  appBar: {
+    flexDirection: "row",
+    backgroundColor: "seagreen",
+    height: 80,
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    paddingTop: 20,
+  },
+  appBarTitle: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    marginLeft: 10,
   },
   foodTile: {
     flexDirection: "row",
