@@ -1,2 +1,2 @@
-!(assets/home.png)
-!(assets/cart.png)
+![HomeScreen](assets/home.jpg)
+![CartScreen](assets/cart.jpg)
