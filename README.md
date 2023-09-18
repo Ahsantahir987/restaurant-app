@@ -1,1 +1,2 @@
-![GitHub Logo](assets/desi.png)
+![HomeScreen](assets/home.jpg)
+![CartScreen](assets/cart.jpg)
