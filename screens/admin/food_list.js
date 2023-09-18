@@ -62,7 +62,7 @@ const FoodListScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.appBar}>
-        <Text style={styles.appBarTitle}>Restaurant App</Text>
+        <Text style={styles.appBarTitle}>Admin Panel</Text>
         <TouchableOpacity onPress={addHandle}>
           <Icons name="add" size={30} color="white" />
         </TouchableOpacity>
