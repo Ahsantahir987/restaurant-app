@@ -1,1 +1,2 @@
-![GitHub Logo](assets/desi.png)
+!(assets/home.png)
+!(assets/cart.png)
